@@ -1,0 +1,315 @@
+<head>
+   <title>DNA</title>
+   <style>
+      body {
+         background-color: #c8c8c8;
+      }
+	  textarea {
+		 height: 10em;
+	  }
+	  textarea#dna_input {
+         resize: none;
+         width: 100%;
+         display: block;
+         margin-left: auto;
+         margin-right: auto;
+         border-radius: 2px;
+         border: none;     
+		 font-size: 16px;
+      }
+      #instruction {
+         clear: both;
+         width: 100%;
+         display: block;
+         margin-bottom: 10px;
+         font-family: Georgia, serif;
+      }
+      #upper {
+         text-align: center;
+         font-family: Georgia, serif;
+         width: 85%;
+         max-width: 900px;
+         margin: auto;
+         background-color: #FFEB3B;
+         padding: 10px;
+         border-radius: 10px;
+      }
+      #input_form {
+         width: 85%;
+         max-width: 900px;
+         clear: both;
+         padding: 10px;
+         margin: 5px auto;
+         background-color: #FF9800;
+         ;
+         border-radius: 10px;
+      }
+      #output_area {
+         clear: both;
+         margin: 5px auto;
+         padding: 10px;
+         background-color: #FFEB3B;
+         border-radius: 10px;
+         width: 85%;
+         max-width: 900px;
+      }
+      #button {
+         float: left;
+         height: 5em;
+         font-size: 25px;
+         background-color: #94E097;
+         border: solid 1px;
+         padding: 10px;
+         text-align: center;
+         border-radius: 10px;
+         margin: auto;
+         display: block;
+         width: 250px;
+      }
+      #button:hover {
+         background-color: white;
+      }
+      .output {
+         font-family: "Courier New", Courier, monospace;
+         width: 475px;
+         background-color: #a3f6a6;
+      }
+      .error {
+         color: red;
+         font-family: "Trebuchet MS", Helvetica, sans-serif;
+      }
+      .output_desc {
+         font-family: "Trebuchet MS", Helvetica, sans-serif;
+         line-height: 25px;
+         font-weight: 500;
+      }
+      #chkbx {
+         float: left;
+         display: inline-block;
+         margin-left: 10px;
+         font-family: "Trebuchet MS", Helvetica, sans-serif;
+      }
+   </style>
+</head>
+
+<body>
+   <script>
+      function myFunction() {
+         var error = [];
+         var error_num = 0;
+         var flag = 0;
+         var dna = document.getElementById("dna_input").value; //Obtain sequence value from text area
+         if (dna.length == 0) {
+            document.getElementById('output_area').style.display = 'none'; //Don't display output div if input is blank
+         } else {
+            document.getElementById('output_area').style.display = 'block'; //Display output div when input is not blank
+         }
+         if (document.getElementById("No_of_bases").checked == false && document.getElementById("GC_Ratio").checked == false && document.getElementById("N_and_invalid_bases").checked == false && document.getElementById("O_Sequence").checked == false && document.getElementById("C_Sequence").checked == false && document.getElementById("Rev_Sequence").checked == false && document.getElementById("Rev_C_Sequence").checked == false) {
+            flag = 20; //set a flag if none of the output options have been checked
+         }
+         dna = dna.replace(/ /g, ''); //Remove space in input
+         dna = dna.replace(/\t/g, ''); //Replae tab in input
+         dna = dna.replace(/\n/g, ''); //Replace line break in input
+         var nt_ = dna.split(""); //Split the sequence into array with individual letters
+         var nt = []; //Initialize array of capitalized bases
+         // Capitalize all bases, replace invalid bases with N, and store in the array 'nt'
+         for (var i = 0; i < nt_.length; i++) {
+            if (nt_[i] == "A" || nt_[i] == "a") {
+               nt[i] = "A";
+            } else if (nt_[i] == "T" || nt_[i] == "t") {
+               nt[i] = "T";
+            } else if (nt_[i] == "C" || nt_[i] == "c") {
+               nt[i] = "C";
+            } else if (nt_[i] == "G" || nt_[i] == "g") {
+               nt[i] = "G";
+            } else if (nt_[i] == "N" || nt_[i] == "n") {
+               nt[i] = "N";
+            } else {
+               error_num = error_num + 1; //Count the number of invalid bases
+               nt[i] = "N";
+            }
+         }
+         var GC = 0; //G+C bases
+         var ATGC = 0; //A+T+G+C bases
+         var N_base = 0; //N and invalid bases
+         for (var i = 0; i < nt.length; i++) {
+            if (nt[i] == "C" || nt[i] == "G") {
+               GC = GC + 1; //Count the number of G and C bases
+            }
+            if (nt[i] == "N") {
+               N_base = N_base + 1; //Count the number of N bases (including invalid bases in the input sequence)
+            }
+         }
+         var bases = [];
+         if (document.getElementById("No_of_bases").checked == true) {
+            bases = nt.length; //count the total number of bases in input sequence (including invalid bases)
+         }
+         var ATGC = nt.length - N_base; //total length - (N+invalid base) = A+T+G+C
+         var GC_ratio = 100 * GC / ATGC; //compute GC ratio
+         var GC_percent = Math.round(GC_ratio * 100) / 100 //Round GC ratio to two digits
+            //Funtion to find complement sequence
+         function comply(dnaseq) {
+               var comp = [];
+               for (var i = 0; i < dnaseq.length; i++) {
+                  if (dnaseq[i] == "A") {
+                     comp[i] = "T";
+                  } else if (dnaseq[i] == "T") {
+                     comp[i] = "A";
+                  } else if (dnaseq[i] == "C") {
+                     comp[i] = "G";
+                  } else if (dnaseq[i] == "G") {
+                     comp[i] = "C";
+                  } else {
+                     comp[i] = "N";
+                  }
+               }
+               return comp;
+            }
+            //Function to join array of individual bases into one string
+         function join(seqs) {
+               var comb = [];
+               for (var i = 0; i < seqs.length; i++) {
+                  if (i % 3 == 0 && i > 0) { //add a space after groups of three bases for convenience
+                     comb = comb + " " + seqs[i];
+                  } else {
+                     comb = comb + seqs[i];
+                  }
+               }
+               return comb;
+            }
+            //Function to reverese a given array of bases
+         function reverse(seqs) {
+            var rev = [];
+            for (var i = 0; i < seqs.length; i++) {
+               rev[i] = seqs[(seqs.length - 1) - i];
+            }
+            return rev;
+         }
+         var original_dna = [];
+         var compleme_nt = [];
+         var complement = [];
+         var rev_nt = [];
+         var reverse_seq = [];
+         var rev_cp_nt = [];
+         var reverse_complement = [];
+         if (document.getElementById("O_Sequence").checked == true) {
+            original_dna = join(nt); //process input sequence and output
+         }
+         if (document.getElementById("C_Sequence").checked == true) {
+            compleme_nt = comply(nt); //output array of complement bases
+            complement = join(compleme_nt); //join complement bases into a string
+         }
+         if (document.getElementById("Rev_Sequence").checked == true) {
+            rev_nt = reverse(nt); //reverse array of processed input bases
+            reverse_seq = join(rev_nt); //join reverse bases into a string`
+         }
+         if (document.getElementById("Rev_C_Sequence").checked == true) {
+            var rev_nt2 = reverse(nt);
+            rev_cp_nt = comply(rev_nt2); //reverse complement`
+            reverse_complement = join(rev_cp_nt); //reverse complement string
+         }
+         if (error_num == 0) {
+            error = []; //Don't display error message if there are no invalid bases (ie error_num ==0) in input
+         } else {
+            if (error_num == 1) {
+               error = error_num + " invalid character (other than A, C, T, G, and N) was found and replaced with 'N'";
+            } else {
+               error = error_num + " invalid characters (other than A, C, T, G, and N) were found and replaced with 'N'";
+            }
+         }
+         var GCPP = [];
+         if (document.getElementById("GC_Ratio").checked == true) {
+            GCPP = GC_percent + "%";
+         }
+         //If nothing is input, then make output empty
+         if (dna == []) {
+            bases = [];
+            N_base = [];
+            GCPP = [];
+         }
+         if (ATGC == 0 && dna.length > 0) {
+            N_base = "<b style='color: red;'>ALL OF IT. ARE YOU KIDDING ME!!!</b>";
+            bases = "<i style='color: red;'>Input sequence is not a valid sequence</i>";
+            GCPP = "<i style='color: red;'>Input sequence is not a valid sequence</i>";
+            original_dna = "<i style='color: red;'>Input sequence is not a valid sequence</i>";
+            complement = "<i style='color: red;'>Input sequence is not a valid sequence</i>";
+            reverse_seq = "<i style='color: red;'>Input sequence is not a valid sequence</i>";
+            reverse_complement = "<i style='color: red;'>Input sequence is not a valid sequence</i>";
+            error = [];
+         }
+         if (document.getElementById("No_of_bases").checked == true && dna.length > 0) {
+            document.getElementById("nb").innerHTML = ["<span class='output_desc'>Number of Bases:</span><br><span class='output'>" + bases + "</span>"];
+         } else {
+            document.getElementById("nb").innerHTML = [];
+         }
+         if (document.getElementById("GC_Ratio").checked == true && dna.length > 0) {
+            document.getElementById("GC").innerHTML = ["<span class='output_desc'>GC Ratio, (G + C)/(A + C + T + G):</span>            <br><span class='output'>" + GCPP + "</span>"];
+         } else {
+            document.getElementById("GC").innerHTML = [];
+         }
+         if (document.getElementById("N_and_invalid_bases").checked == true && dna.length > 0) {
+            document.getElementById("N_base").innerHTML = ["<span class='output_desc'>Number of 'N' and invalid bases:</span><br><span class='output'>" + N_base + "</span><br><span class='error'>" + error + "</span>"];
+         } else {
+            document.getElementById("N_base").innerHTML = [];
+         }
+         if (document.getElementById("O_Sequence").checked == true && dna.length > 0) {
+            document.getElementById("dna").innerHTML = ["<span class='output_desc'>Original Sequence:</span><br><span class='output'>" + original_dna + "</span>"];
+         } else {
+            document.getElementById("dna").innerHTML = [];
+         }
+         if (document.getElementById("C_Sequence").checked == true && dna.length > 0) {
+            document.getElementById("cp").innerHTML = ["<span class='output_desc'>Complement Sequence:</span><br><span class='output'>" + complement + "</span>"];
+         } else {
+            document.getElementById("cp").innerHTML = [];
+         }
+         if (document.getElementById("Rev_Sequence").checked == true && dna.length > 0) {
+            document.getElementById("rv").innerHTML = ["<span class='output_desc'>Reverse Sequence:</span><br><span class='output'>" + reverse_seq + "</span>"];
+         } else {
+            document.getElementById("rv").innerHTML = [];
+         }
+         if (document.getElementById("Rev_C_Sequence").checked == true && dna.length > 0) {
+            document.getElementById("rv_cp").innerHTML = ["<span class='output_desc'>Reverse Complement Sequence:</span><br><span class='output'>" + reverse_complement + "</span>"];
+         } else {
+            document.getElementById("rv_cp").innerHTML = [];
+         }
+         if (flag == 20) {
+            document.getElementById("N_base").innerHTML = ["</span><br><span class='error'>Select at least one option</span>"];
+         }
+      }
+   </script>
+   <div id="upper">
+      <h1>DNA Sequence Information</h1>
+      <p>&copy; 2016. Made by <a href="http://darshanbaral.github.io/">Darshan Baral</a>.</p>
+   </div>
+   <div id="input_form">
+      <button id="button" onclick="myFunction()">Generate Output</button>
+      <form action="" id="chkbx">
+         <input type="checkbox" id="No_of_bases" checked> Number of bases
+         <br>
+         <input type="checkbox" id="GC_Ratio" checked> GC Ratio
+         <br>
+         <input type="checkbox" id="N_and_invalid_bases" checked> N bases (including invalid bases)
+         <br>
+         <input type="checkbox" id="O_Sequence" checked>Original Sequence
+         <br>
+         <input type="checkbox" id="C_Sequence">Complement Sequence
+         <br>
+         <input type="checkbox" id="Rev_Sequence">Reverse Sequence
+         <br>
+         <input type="checkbox" id="Rev_C_Sequence">Reverse Complement Sequence
+         <br>
+      </form>
+      <span id="instruction">Click the button above to get selected output(s) for the input DNA sequence.</span>
+      <textarea id="dna_input" placeholder="Input DNA sequence here. White spaces and line breaks in the input will be ignored. Input is not case sensitive."></textarea>
+   </div>
+   <div id="output_area" style="display:none">
+      <p id="nb"></p>
+      <p id="GC"></p>
+      <p id="N_base"></p>
+      <p id="dna"></p>
+      <p id="cp"></p>
+      <p id="rv"></p>
+      <p id="rv_cp"></p>
+   </div>
+   <br>
+</body>
