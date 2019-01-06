@@ -55,16 +55,16 @@
         <div class="row">
           <div class="col-md-6 mb-4">
             <form autocomplete="off" id="form_player_name">
-              <h4 class="form-text text-muted" id="messageTitle">
+              <h2 class="form-text text-muted" id="messageTitle">
                 Enter the names of players
-              </h4>
+              </h2>
               <div class="form-group">
                 <label class="d-none" for="p1">Player 1</label>
                 <input
                   type="text"
                   class="form-control"
                   id="p1"
-                  placeholder="Enter player's name"
+                  placeholder="Player 1"
                 />
               </div>
               <div class="form-group">
@@ -73,7 +73,7 @@
                   type="text"
                   class="form-control"
                   id="p2"
-                  placeholder="Enter player's name"
+                  placeholder="Player 2"
                 />
               </div>
               <div class="form-group">
@@ -82,7 +82,7 @@
                   type="text"
                   class="form-control"
                   id="p3"
-                  placeholder="Enter player's name"
+                  placeholder="Player 3"
                 />
               </div>
               <div class="form-group">
@@ -91,8 +91,26 @@
                   type="text"
                   class="form-control"
                   id="p4"
-                  placeholder="Enter player's name"
+                  placeholder="Player 4"
                 />
+              </div>
+
+              <h2 class="form-text text-muted">Options</h2>
+              <div class="form-group">
+                <label for="bonusTotalOption"
+                  >How many bonus equals one hand?</label
+                >
+                <input
+                  type="number"
+                  min="5"
+                  max="10"
+                  value="8"
+                  class="form-control"
+                  id="bonusTotalOption"
+                />
+                <small class="form-text text-muted"
+                  >An integer between 5 and 10.</small
+                >
               </div>
               <button type="button" class="btn btn-success p-2" id="enterNames">
                 Submit
@@ -102,21 +120,7 @@
           <div class="col-md-6 bg-light rounded">
             <h2>Welcome!</h2>
             <p>Use this tool to record scores when playing callbreak.</p>
-            <h3>Notes</h3>
-            <ul>
-              <li>
-                When the actual number hands won by a player at the end of a
-                round is more than the calls (predictions) made before that
-                round, the difference will be a <i>bonus</i>. The
-                <i>bonus</i> will be appended to the calls after a period
-                (<code>#calls.#bonus</code>).
-              </li>
-              <li>
-                The <i>bonus</i> is worth one eighth of an actual hand. When a
-                player has 8 <i>bonus</i> in total, it will count as 1 actual
-                hand.
-              </li>
-            </ul>
+            <footer></footer>
           </div>
         </div>
       </div>
@@ -244,9 +248,24 @@
             </button>
           </div>
           <div class="col mt-4">
-            <p class="text-center">
-              Created by <a href="https://www.darshanbaral.com">Darshan.</a>
-            </p>
+            <h3>Notes</h3>
+            <ul>
+              <li>
+                When the actual number hands won by a player at the end of a
+                round is more than the calls (predictions) made before that
+                round, the difference will be a <i>bonus</i>. The
+                <i>bonus</i> will be appended to the calls after a period
+                (<code>#calls.#bonus</code>).
+              </li>
+              <li>
+                The <i>bonus</i> is worth one <sup>1</sup>&frasl;<sub
+                  ><span id="bonusToTotal1"></span></sub
+                ><sup>th</sup> of an actual hand. When a player has
+                <span id="bonusToTotal2"></span> <i>bonus</i> in total, it will
+                count as 1 actual hand.
+              </li>
+            </ul>
+            <footer></footer>
           </div>
         </div>
       </div>

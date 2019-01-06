@@ -1,6 +1,10 @@
 $(document).ready(function() {
+  $("footer").html(
+    `<p class="text-center">Created by <a href="https://www.darshanbaral.com">Darshan.</a></p>`
+  );
   let playersPrefix = ["p1", "p2", "p3", "p4"];
   let playersArray = ["P1", "P2", "P3", "P4"];
+  let bonusTotalOptionValue;
 
   $("#enterNames").click(function() {
     for (let i = 0; i < playersPrefix.length; i++) {
@@ -10,10 +14,12 @@ $(document).ready(function() {
       }
       $(`#${playersPrefix[i]}TableTitle`).html(playersArray[i]);
     }
+    bonusTotalOptionValue = $("#bonusTotalOption").val();
+    $("#bonusToTotal1, #bonusToTotal2").text(bonusTotalOptionValue);
   });
 
   $("#resetSession, #enterNames").click(function() {
-    document.getElementById("form_player_name").reset();
+    //document.getElementById("form_player_name").reset();
     $("#player_names").toggle(10);
     $("#scoreDiv").toggle(10);
     $("#messageTitle").html("Enter the names of new players");
@@ -101,10 +107,13 @@ $(document).ready(function() {
             Math.round((playerScoreSums[i] + Number(actualScore[i][0])) * 10) /
             10;
           let bonusScore = playerScoreSums[i] % 1;
-          if (bonusScore >= 0.8) {
+          if (bonusScore >= bonusTotalOptionValue / 10) {
             playerScoreSums[i] =
               Math.round(
-                (Math.ceil(playerScoreSums[i]) + bonusScore - 0.8) * 10
+                (Math.ceil(playerScoreSums[i]) +
+                  bonusScore -
+                  bonusTotalOptionValue / 10) *
+                  10
               ) / 10;
           }
           $(`#${playersPrefix[i]}Sum`).html(playerScoreSums[i]);
