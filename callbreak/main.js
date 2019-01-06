@@ -42,7 +42,8 @@ $(document).ready(function() {
     $("#p1Score, #p2Score, #p3Score, #p4Score").val("");
     $("#p1Sum, #p2Sum, #p3Sum, #p4Sum").text("0");
     $insertScoreSelector.html("Record Hands Called");
-    $("#errorMessage").html("");
+    $("#gameErrorMessage").html("");
+    $("#gameMessage").html("");
     beforeRound = true;
   });
 
@@ -107,6 +108,7 @@ $(document).ready(function() {
 
         roundNumber = Number(roundNumber + 1);
         if (roundNumber === 5) {
+          $insertScoreSelector.html("GAME OVER!!!");
           $insertScoreSelector.prop("disabled", true);
           let maxScore = Math.max(...playerScoreSums);
           let winners = [];
@@ -116,15 +118,15 @@ $(document).ready(function() {
             }
           }
           if (winners.length === 1) {
-            $insertScoreSelector.html(`${winners[0]} is the winner!!!`);
+            $("#gameMessage").html(`${winners[0]} is the winner!!!`);
           } else if (winners.length === 2) {
-            $insertScoreSelector.html(
+            $("#gameMessage").html(
               `${winners[0]} and ${winners[1]} are the winner!!!`
             );
           } else if (winners.length === 4) {
-            $insertScoreSelector.html("Well! somehow everyone won.");
+            $("#gameMessage").html("Well! somehow everyone won.");
           } else {
-            $insertScoreSelector.html(
+            $("#gameMessage").html(
               `${winners.slice(0, winners.length - 1).join(", ")} and ${
                 winners[winners.length - 1]
               } are the winners!!!`

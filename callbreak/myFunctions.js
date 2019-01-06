@@ -24,13 +24,13 @@ function computeActualScore(roundNumber, ongoingScore, playersPrefix) {
 function validateWonScore(scoreArray) {
   let sumScores = scoreArray.reduce(getSum);
   if (sumScores === 13) {
-    $("#errorMessage").html("");
+    $("#gameErrorMessage").html("");
     return true;
   } else if (sumScores > 13) {
-    $("#errorMessage").html("The sum of hands is greater than 13.");
+    $("#gameErrorMessage").html("The sum of hands is greater than 13.");
     return false;
   } else if (sumScores < 13) {
-    $("#errorMessage").html("The sum of hands is less than 13.");
+    $("#gameErrorMessage").html("The sum of hands is less than 13.");
     return false;
   }
 }
@@ -50,19 +50,26 @@ function validateInput(scoreArray, playersPrefix) {
       $(`#${playersPrefix[i]}Score`).addClass("border-danger");
     }
   }
+  if (outputBoolean) {
+    $("#gameErrorMessage").html("");
+  } else {
+    $("#gameErrorMessage").html(
+      "The input has to be an integer between 1 and 10."
+    );
+  }
   return outputBoolean;
 }
 
 function validateCalledScore(scoreArray) {
   let sumScores = scoreArray.reduce(getSum);
   if (sumScores >= 4 && sumScores <= 17) {
-    $("#errorMessage").html("");
+    $("#gameErrorMessage").html("");
     return true;
   } else if (sumScores > 17) {
-    $("#errorMessage").html("The sum of called hands is too high.");
+    $("#gameErrorMessage").html("The sum of called hands is too high.");
     return false;
   } else if (sumScores < 4) {
-    $("#errorMessage").html("The sum of called hands is too low.");
+    $("#gameErrorMessage").html("The sum of called hands is too low.");
     return false;
   }
 }
