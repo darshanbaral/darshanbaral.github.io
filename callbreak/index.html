@@ -48,54 +48,77 @@
   <body class="container">
     <script src="./myFunctions.js"></script>
     <script src="./main.js" type="module"></script>
-    <h1 class="mt-1 mb-1 p-1 font-weight-bold">callbre♠k</h1>
+    <h1 class="mt-1 mb-1 p-1 font-weight-bold">callbreak</h1>
 
     <div class="row mt-3 ml-auto mr-auto">
       <div class="col" id="player_names">
-        <form autocomplete="off" id="form_player_name">
-          <h4 class="form-text text-muted" id="messageTitle">
-            Enter the names of players
-          </h4>
-          <div class="form-group">
-            <label class="d-none" for="p1">Player 1</label>
-            <input
-              type="text"
-              class="form-control"
-              id="p1"
-              placeholder="Enter player's name"
-            />
+        <div class="row">
+          <div class="col-md-6 mb-4">
+            <form autocomplete="off" id="form_player_name">
+              <h4 class="form-text text-muted" id="messageTitle">
+                Enter the names of players
+              </h4>
+              <div class="form-group">
+                <label class="d-none" for="p1">Player 1</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="p1"
+                  placeholder="Enter player's name"
+                />
+              </div>
+              <div class="form-group">
+                <label class="d-none" for="p2">Player 2</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="p2"
+                  placeholder="Enter player's name"
+                />
+              </div>
+              <div class="form-group">
+                <label class="d-none" for="p3">Player 3</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="p3"
+                  placeholder="Enter player's name"
+                />
+              </div>
+              <div class="form-group">
+                <label class="d-none" for="p4">Player 4</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="p4"
+                  placeholder="Enter player's name"
+                />
+              </div>
+              <button type="button" class="btn btn-success p-2" id="enterNames">
+                Submit
+              </button>
+            </form>
           </div>
-          <div class="form-group">
-            <label class="d-none" for="p2">Player 2</label>
-            <input
-              type="text"
-              class="form-control"
-              id="p2"
-              placeholder="Enter player's name"
-            />
+          <div class="col-md-6 bg-light rounded">
+            <h2>Welcome!</h2>
+            <p>Use this tool to record scores when playing callbreak.</p>
+            <h3>Notes</h3>
+            <ul>
+              <li>
+                When the actual number hands won by a player at the end of a
+                round is more than the calls (predictions) made before that
+                round, the difference will be a <i>bonus</i>. The
+                <i>bonus</i> will be appended to the calls after a period
+                (<code>#calls.#bonus</code>).
+              </li>
+              <li>
+                The <i>bonus</i> is worth one eighth of an actual hand. When a
+                player has 8 <i>bonus</i> in total, it will count as 1 actual
+                hand.
+              </li>
+            </ul>
           </div>
-          <div class="form-group">
-            <label class="d-none" for="p3">Player 3</label>
-            <input
-              type="text"
-              class="form-control"
-              id="p3"
-              placeholder="Enter player's name"
-            />
-          </div>
-          <div class="form-group">
-            <label class="d-none" for="p4">Player 4</label>
-            <input
-              type="text"
-              class="form-control"
-              id="p4"
-              placeholder="Enter player's name"
-            />
-          </div>
-          <button type="button" class="btn btn-success p-2" id="enterNames">
-            Submit
-          </button>
-        </form>
+        </div>
       </div>
 
       <div class="col" id="scoreDiv" style="display:none;">
