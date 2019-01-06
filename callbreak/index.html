@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Call-Break</title>
+    <title>Callbreak | Darshan Baral</title>
 
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
@@ -14,14 +14,41 @@
       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
       crossorigin="anonymous"
     />
+    <link
+      href="https://fonts.googleapis.com/css?family=Overlock"
+      rel="stylesheet"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./icons/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./icons/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="./icons/favicon-16x16.png"
+    />
 
     <script src="./jquery-3.3.1.min.js"></script>
+
+    <style>
+      body {
+        font-family: "Overlock", cursive;
+      }
+    </style>
   </head>
 
   <body class="container">
     <script src="./myFunctions.js"></script>
     <script src="./main.js" type="module"></script>
-    <h5 class="mt-1 mb-1 p-1 font-weight-bold">callbreak score</h5>
+    <h1 class="mt-1 mb-1 p-1 font-weight-bold">callbre♠k</h1>
 
     <div class="row mt-3 ml-auto mr-auto">
       <div class="col" id="player_names">
@@ -65,7 +92,7 @@
               placeholder="Enter player's name"
             />
           </div>
-          <button type="button" class="btn btn-success" id="enterNames">
+          <button type="button" class="btn btn-success p-2" id="enterNames">
             Submit
           </button>
         </form>
@@ -74,7 +101,7 @@
       <div class="col" id="scoreDiv" style="display:none;">
         <div class="mb-4 text-center">
           <button type="button" class="btn btn-success w-50" id="insertScore">
-            Record Hands Called
+            Record Calls
           </button>
         </div>
 
@@ -82,18 +109,26 @@
           <thead>
             <tr>
               <th class="text-center bg-light" scope="col">Round</th>
-              <th class="text-center bg-light" scope="col" id="p1TableTitle">
-                P1
-              </th>
-              <th class="text-center bg-light" scope="col" id="p2TableTitle">
-                P2
-              </th>
-              <th class="text-center bg-light" scope="col" id="p3TableTitle">
-                P3
-              </th>
-              <th class="text-center bg-light" scope="col" id="p4TableTitle">
-                P4
-              </th>
+              <th
+                class="text-center bg-light"
+                scope="col"
+                id="p1TableTitle"
+              ></th>
+              <th
+                class="text-center bg-light"
+                scope="col"
+                id="p2TableTitle"
+              ></th>
+              <th
+                class="text-center bg-light"
+                scope="col"
+                id="p3TableTitle"
+              ></th>
+              <th
+                class="text-center bg-light"
+                scope="col"
+                id="p4TableTitle"
+              ></th>
             </tr>
           </thead>
 

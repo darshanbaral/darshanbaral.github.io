@@ -20,6 +20,10 @@ $(document).ready(function() {
     $("#p1Score, #p2Score, #p3Score, #p4Score").val("");
   });
 
+  $("#resetSession").click(function() {
+    playersArray = ["P1", "P2", "P3", "P4"];
+  });
+
   let playerScoreSums = [0, 0, 0, 0];
   let roundNumber = 0;
   let beforeRound = true;
@@ -41,7 +45,7 @@ $(document).ready(function() {
     roundNumber = 0;
     $("#p1Score, #p2Score, #p3Score, #p4Score").val("");
     $("#p1Sum, #p2Sum, #p3Sum, #p4Sum").text("0");
-    $insertScoreSelector.html("Record Hands Called");
+    $insertScoreSelector.html("Record Calls");
     $("#gameErrorMessage").html("");
     $("#gameMessage").html("");
     beforeRound = true;
@@ -65,7 +69,7 @@ $(document).ready(function() {
       }
 
       if (beforeRound && didCallsValidate) {
-        $insertScoreSelector.html("Record Hands Won");
+        $insertScoreSelector.html("Record Hands");
         $("#scoreTable tr:last").before(
           `<tr id="canRemoveRow_${roundNumber}">
            <td class="text-center font-weight-bold">${
@@ -82,7 +86,7 @@ $(document).ready(function() {
            </tr>`
         );
       } else if (didScoresValidate) {
-        $insertScoreSelector.html("Record Hands Called");
+        $insertScoreSelector.html("Record Calls");
         let actualScore = computeActualScore(
           roundNumber,
           ongoingScore,
@@ -127,7 +131,7 @@ $(document).ready(function() {
             $("#gameMessage").html("Well! somehow everyone won.");
           } else {
             $("#gameMessage").html(
-              `${winners.slice(0, winners.length - 1).join(", ")} and ${
+              `${winners.slice(0, winners.length - 1).join(", ")}, and ${
                 winners[winners.length - 1]
               } are the winners!!!`
             );
