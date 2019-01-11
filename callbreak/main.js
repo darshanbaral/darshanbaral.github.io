@@ -4,30 +4,36 @@ $(document).ready(function() {
   );
   let playersPrefix = ["p1", "p2", "p3", "p4"];
   let playersArray = ["P1", "P2", "P3", "P4"];
-  let bonusTotalOptionValue;
+  let bonusTotalOptionValue = 8;
+  let validateBonusTotal = false;
 
-  $("#enterNames").click(function() {
-    for (let i = 0; i < playersPrefix.length; i++) {
-      let playerName = $(`#${playersPrefix[i]}`).val();
-      if (playerName.length > 0) {
-        playersArray[i] = playerName;
-      }
-      $(`#${playersPrefix[i]}TableTitle`).html(playersArray[i]);
-    }
-    bonusTotalOptionValue = $("#bonusTotalOption").val();
-    $("#bonusToTotal1, #bonusToTotal2").text(bonusTotalOptionValue);
-  });
-
-  $("#resetSession, #enterNames").click(function() {
-    //document.getElementById("form_player_name").reset();
+  function clearStuff() {
     $("#player_names").toggle(10);
     $("#scoreDiv").toggle(10);
-    $("#messageTitle").html("Enter the names of new players");
     $("#p1Score, #p2Score, #p3Score, #p4Score").val("");
+  }
+
+  $("#enterNames").click(function() {
+    bonusTotalOptionValue = $("#bonusTotalOption").val();
+    validateBonusTotal = validateBonusOption(bonusTotalOptionValue);
+
+    if (validateBonusTotal) {
+      for (let i = 0; i < playersPrefix.length; i++) {
+        let playerName = $(`#${playersPrefix[i]}`).val();
+        if (playerName.length > 0) {
+          playersArray[i] = playerName;
+        }
+        $(`#${playersPrefix[i]}TableTitle`).html(playersArray[i]);
+      }
+      $(".bonusToTotal").text(bonusTotalOptionValue);
+      clearStuff();
+    }
   });
 
   $("#resetSession").click(function() {
+    clearStuff();
     playersArray = ["P1", "P2", "P3", "P4"];
+    $("#messageTitle").html("Enter the names of new players");
   });
 
   let playerScoreSums = [0, 0, 0, 0];
@@ -134,7 +140,7 @@ $(document).ready(function() {
             $("#gameMessage").html(`${winners[0]} is the winner!!!`);
           } else if (winners.length === 2) {
             $("#gameMessage").html(
-              `${winners[0]} and ${winners[1]} are the winner!!!`
+              `${winners[0]} and ${winners[1]} are the winners!!!`
             );
           } else if (winners.length === 4) {
             $("#gameMessage").html("Well! somehow everyone won.");

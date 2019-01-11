@@ -35,6 +35,17 @@ function validateWonScore(scoreArray) {
   }
 }
 
+function validateBonusOption(inputValue) {
+  inputValue = Number(inputValue);
+  if (inputValue >= 5 && inputValue <= 10 && Number.isInteger(inputValue)) {
+    $("#bonusTotalOption").removeClass("border-danger");
+    return true;
+  } else {
+    $("#bonusTotalOption").addClass("border-danger");
+    return false;
+  }
+}
+
 function validateInput(scoreArray, playersPrefix) {
   let outputBoolean = true;
   for (let i = 0; i < scoreArray.length; i++) {

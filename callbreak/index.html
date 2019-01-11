@@ -94,35 +94,70 @@
                   placeholder="Player 4"
                 />
               </div>
-
-              <h2 class="form-text text-muted">Options</h2>
-              <div class="form-group">
-                <label for="bonusTotalOption"
-                  >How many bonus equals one hand?</label
-                >
-                <input
-                  type="number"
-                  min="5"
-                  max="10"
-                  value="8"
-                  class="form-control"
-                  id="bonusTotalOption"
-                />
-                <small class="form-text text-muted"
-                  >An integer between 5 and 10.</small
-                >
-              </div>
               <button type="button" class="btn btn-success p-2" id="enterNames">
                 Submit
               </button>
             </form>
           </div>
+
           <div class="col-md-6 bg-light rounded">
-            <h2>Welcome!</h2>
-            <p>Use this tool to record scores when playing callbreak.</p>
-            <footer></footer>
+            <div class="form-group">
+              <h2 class="form-text text-muted">Options</h2>
+              <div class="row">
+                <div class="col-12">
+                  <label for="bonusTotalOption"
+                    >How many bonus equals one hand?</label
+                  >
+                  <input
+                    type="text"
+                    value="8"
+                    class="form-control"
+                    id="bonusTotalOption"
+                  />
+                  <small class="form-text text-muted"
+                    >An integer between 5 and 10.</small
+                  >
+                </div>
+
+                <div class="col-12 mt-3">How much do the losers pay?</div>
+
+                <div class="col-4 p-2">
+                  <label for="secondPays">2nd</label>
+                  <input
+                    type="text"
+                    value="5"
+                    class="form-control"
+                    id="secondPays"
+                  />
+                </div>
+
+                <div class="col-4 p-2">
+                  <label for="thirdPays">3rd</label>
+                  <input
+                    type="text"
+                    value="10"
+                    class="form-control"
+                    id="thirdPays"
+                  />
+                </div>
+
+                <div class="col-4 p-2">
+                  <label for="thirdPays">4th</label>
+                  <input
+                    type="text"
+                    value="15"
+                    class="form-control"
+                    id="thirdPays"
+                  />
+                </div>
+                <small class="form-text text-muted"
+                  >An integer between 5 and 10.</small
+                >
+              </div>
+            </div>
           </div>
         </div>
+        <footer class="text-center mt-3"></footer>
       </div>
 
       <div class="col" id="scoreDiv" style="display:none;">
@@ -259,10 +294,10 @@
               </li>
               <li>
                 The <i>bonus</i> is worth one <sup>1</sup>&frasl;<sub
-                  ><span id="bonusToTotal1"></span></sub
+                  ><span class="bonusToTotal"></span></sub
                 ><sup>th</sup> of an actual hand. When a player has
-                <span id="bonusToTotal2"></span> <i>bonus</i> in total, it will
-                count as 1 actual hand.
+                <span class="bonusToTotal"></span> <i>bonus</i> in total, it
+                will count as 1 actual hand.
               </li>
             </ul>
             <footer></footer>
