@@ -85,6 +85,4 @@ function validateCalledScore(scoreArray) {
   }
 }
 
-function getSum(total, num) {
-  return Number(total) + Number(num);
-}
+getSum = (total, num) => Number(total) + Number(num);

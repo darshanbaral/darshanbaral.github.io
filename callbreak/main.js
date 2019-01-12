@@ -1,6 +1,6 @@
 $(document).ready(function() {
   $("footer").html(
-    `<p class="text-center">Created by <a href="https://www.darshanbaral.com">Darshan.</a></p>`
+    `<p class="text-center">Created by <a href="https://www.darshanbaral.com"><code>Darshan</code></a>.</p>`
   );
   let playersPrefix = ["p1", "p2", "p3", "p4"];
   let playersArray = ["P1", "P2", "P3", "P4"];
@@ -11,6 +11,7 @@ $(document).ready(function() {
     $("#player_names").toggle(10);
     $("#scoreDiv").toggle(10);
     $("#p1Score, #p2Score, #p3Score, #p4Score").val("");
+    $("#p1Score, #p2Score, #p3Score, #p4Score").removeClass("border-danger");
   }
 
   $("#enterNames").click(function() {
@@ -79,8 +80,11 @@ $(document).ready(function() {
       } else {
         didScoresValidate = validateWonScore(ongoingScore);
       }
-
+      let gameStartDate = [];
       if (beforeRound && didCallsValidate) {
+        if (roundNumber === 0) {
+          gameStartDate.push(new Date().toLocaleString());
+        }
         $insertScoreSelector.html("Record Hands");
         $("#scoreTable tr:last").before(
           `<tr id="canRemoveRow_${roundNumber}">
@@ -126,7 +130,9 @@ $(document).ready(function() {
         }
 
         roundNumber = Number(roundNumber + 1);
+        let gameEndDate = [];
         if (roundNumber === 5) {
+          gameEndDate.push(new Date().toLocaleString());
           $insertScoreSelector.html("GAME OVER!!!");
           $insertScoreSelector.prop("disabled", true);
           let maxScore = Math.max(...playerScoreSums);

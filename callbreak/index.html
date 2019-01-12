@@ -15,8 +15,8 @@
       crossorigin="anonymous"
     />
     <link
-      href="https://fonts.googleapis.com/css?family=Overlock"
       rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons"
     />
     <link
       rel="apple-touch-icon"
@@ -40,7 +40,7 @@
 
     <style>
       body {
-        font-family: "Overlock", cursive;
+        font-family: "Roboto", sans-serif;
       }
     </style>
   </head>
@@ -48,16 +48,16 @@
   <body class="container">
     <script src="./myFunctions.js"></script>
     <script src="./main.js" type="module"></script>
-    <h1 class="mt-1 mb-1 p-1 font-weight-bold">callbreak</h1>
 
+    <h1 class="mt-1 mb-1 p-1 font-weight-bold">callbreak</h1>
     <div class="row mt-3 ml-auto mr-auto">
       <div class="col" id="player_names">
         <div class="row">
           <div class="col-md-6 mb-4">
+            <h2 class="form-text text-muted" id="messageTitle">
+              Enter the names of players
+            </h2>
             <form autocomplete="off" id="form_player_name">
-              <h2 class="form-text text-muted" id="messageTitle">
-                Enter the names of players
-              </h2>
               <div class="form-group">
                 <label class="d-none" for="p1">Player 1</label>
                 <input
@@ -118,41 +118,6 @@
                     >An integer between 5 and 10.</small
                   >
                 </div>
-
-                <div class="col-12 mt-3">How much do the losers pay?</div>
-
-                <div class="col-4 p-2">
-                  <label for="secondPays">2nd</label>
-                  <input
-                    type="text"
-                    value="5"
-                    class="form-control"
-                    id="secondPays"
-                  />
-                </div>
-
-                <div class="col-4 p-2">
-                  <label for="thirdPays">3rd</label>
-                  <input
-                    type="text"
-                    value="10"
-                    class="form-control"
-                    id="thirdPays"
-                  />
-                </div>
-
-                <div class="col-4 p-2">
-                  <label for="thirdPays">4th</label>
-                  <input
-                    type="text"
-                    value="15"
-                    class="form-control"
-                    id="thirdPays"
-                  />
-                </div>
-                <small class="form-text text-muted"
-                  >An integer between 5 and 10.</small
-                >
               </div>
             </div>
           </div>
@@ -269,20 +234,20 @@
 
         <div class="row">
           <div class="col-md-6 mt-4 text-center">
-            <button type="button" class="btn btn-warning w-100" id="newGame">
+            <button type="button" class="btn border-warning w-100" id="newGame">
               New Game
             </button>
           </div>
           <div class="col-md-6 mt-4 text-center">
             <button
               type="button"
-              class="btn btn-danger w-100"
+              class="btn border-danger w-100"
               id="resetSession"
             >
               Reset Session
             </button>
           </div>
-          <div class="col mt-4">
+          <div class="col mt-4 bg-light pt-2">
             <h3>Notes</h3>
             <ul>
               <li>
