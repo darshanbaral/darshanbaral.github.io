@@ -1,8 +1,8 @@
-let temperatureScales = {
-  celsius: { upper: 100, lower: 0 },
-  kelvin: { upper: 373.15, lower: 273.15 },
-  fahrenheit: { upper: 212, lower: 32 },
-  rankine: { upper: 671.67, lower: 491.67 }
+const temperatureScales = {
+  celsius: { upper: 100, lower: 0, symbol: "&#176;C" },
+  kelvin: { upper: 373.15, lower: 273.15, symbol: "K" },
+  fahrenheit: { upper: 212, lower: 32, symbol: "&#176;F" },
+  rankine: { upper: 671.67, lower: 491.67, symbol: "&#176;R" }
 };
 
 class temperature {
@@ -23,24 +23,38 @@ function convertTemp(from, to) {
   );
 }
 
-function myFunction() {
-  let selectedTo = document.getElementById("toOptions");
-  let selectedToText = selectedTo.options[selectedTo.selectedIndex].text;
+let unitList = [];
 
-  let selectedFrom = document.getElementById("fromOptions");
-  let selectedFromText = selectedFrom.options[selectedFrom.selectedIndex].text;
+for (let key in temperatureScales) {
+  unitList.push(
+    `<option value="${key}">${temperatureScales[key].symbol}</option>`
+  );
+}
+
+function myFunction() {
+  let selectedToText = $("#toOptions option:selected").text();
+  let selectedFromText = $("#fromOptions option:selected").text();
 
   let inputTemperature = new temperature(
-    document.getElementById("fromOptions").value,
-    document.getElementById("temperatureInput").value
+    $("#fromOptions").val(),
+    $("#temperatureInput").val()
   );
-  let outputTemperature = new temperature(
-    document.getElementById("toOptions").value
+  let outputTemperature = new temperature($("#toOptions").val());
+
+  $("#ans").html(
+    `${$("#temperatureInput").val()} ${selectedFromText} = ${Math.round(
+      convertTemp(inputTemperature, outputTemperature) * 1000,
+      3
+    ) / 1000} ${selectedToText}`
   );
-  document.getElementById("ans").innerHTML = `${
-    document.getElementById("temperatureInput").value
-  } ${selectedFromText} = ${Math.round(
-    convertTemp(inputTemperature, outputTemperature) * 1000,
-    3
-  ) / 1000} ${selectedToText}`;
 }
+
+$(document).ready(function() {
+  $("#fromList").html(
+    `<select id="fromOptions" onchange="myFunction()">${unitList}</select>`
+  );
+
+  $("#toList").html(
+    `<select id="toOptions" onchange="myFunction()">${unitList}</select>`
+  );
+});

@@ -1,40 +1,32 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Temperature Converter</title>
-    <meta charset="UTF-8" />
+    <title>Converter | Darshan Baral</title>
+
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta name="description" content="Unit converter" />
+    <meta name="author" content="Darshan Baral" />
+
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
       integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
       crossorigin="anonymous"
     />
-    <script src="src/main.js"></script>
+    <script src="../resources/jquery-3.3.1.min.js"></script>
   </head>
 
   <body class="container">
-    <h3 class="text-center mt-3">
-      Temperature converter made by <a href="https://www.darshanbaral.com">Darshan</a>
-    </h3>
+    <script src="src/main.js"></script>
+    <h4 class="text-center mt-3">Converter</h4>
     <div class="text-center mt-4">
-      Convert
+      <button onclick="myFunction()">Convert</button>
       <input onchange="myFunction()" type="number" id="temperatureInput" />
-      <select id="fromOptions" onchange="myFunction()">
-        <option value="celsius">&#176;C</option>
-        <option value="fahrenheit">&#176;F</option>
-        <option value="rankine">&#176;R</option>
-        <option value="kelvin">&#176;K</option>
-      </select>
-      to
-      <select id="toOptions" onchange="myFunction()">
-        <option value="celsius">&#176;C</option>
-        <option value="fahrenheit">&#176;F</option>
-        <option value="rankine">&#176;R</option>
-        <option value="kelvin">&#176;K</option>
-      </select>
+      <span id="fromList"></span> to <span id="toList"></span>
     </div>
     <div class="text-center mt-4">
-      <h4><span id="ans"></span></h4>
+      <h4><span id="ans" class="text-success"></span></h4>
     </div>
   </body>
 </html>
