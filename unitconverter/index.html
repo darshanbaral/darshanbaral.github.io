@@ -20,12 +20,26 @@
   <body class="container">
     <script src="src/main.js"></script>
     <h4 class="text-center mt-3">Convert</h4>
-    <div class="text-center mt-4">
-      <input onchange="myFunction()" type="number" id="temperatureInput" />
-      <span id="fromList"></span> to <span id="toList"></span>
+
+    <form class="form-inline justify-content-center">
+      <div class="form-group text-center">
+        <input
+          class="form-control"
+          onchange="myFunction()"
+          type="number"
+          id="temperatureInput"
+        />
+        <span class="ml-2 mr-2" id="fromList"></span>to
+        <span class="ml-2 mr-2" id="toList"></span>
+      </div>
+    </form>
+
+    <div class="text-center">
+      <h4><span id="ans" class="text-success">0</span></h4>
     </div>
-    <div class="text-center mt-4">
-      <h4><span id="ans" class="text-success"></span></h4>
-    </div>
+    <hr />
+    <footer class="container text-center mt-3">
+      <a href="https://www.darshanbaral.com">darshan</a>
+    </footer>
   </body>
 </html>

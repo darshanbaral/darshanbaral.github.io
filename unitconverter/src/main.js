@@ -51,10 +51,10 @@ function myFunction() {
 
 $(document).ready(function() {
   $("#fromList").html(
-    `<select id="fromOptions" onchange="myFunction()">${unitList}</select>`
+    `<select class="form-control" id="fromOptions" onchange="myFunction()">${unitList}</select>`
   );
 
   $("#toList").html(
-    `<select id="toOptions" onchange="myFunction()">${unitList}</select>`
+    `<select class="form-control" id="toOptions" onchange="myFunction()">${unitList}</select>`
   );
 });
