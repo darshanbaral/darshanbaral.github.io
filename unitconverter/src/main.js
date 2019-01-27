@@ -34,19 +34,23 @@ for (let key in temperatureScales) {
 function myFunction() {
   let selectedToText = $("#toOptions option:selected").text();
   let selectedFromText = $("#fromOptions option:selected").text();
+  let inputValue = $("#temperatureInput").val();
 
-  let inputTemperature = new temperature(
-    $("#fromOptions").val(),
-    $("#temperatureInput").val()
-  );
-  let outputTemperature = new temperature($("#toOptions").val());
+  if ($.isNumeric(inputValue)) {
+    $("#temperatureInput").removeClass("border-danger");
+    let inputTemperature = new temperature($("#fromOptions").val(), inputValue);
+    let outputTemperature = new temperature($("#toOptions").val());
 
-  $("#ans").html(
-    `${$("#temperatureInput").val()} ${selectedFromText} = ${Math.round(
-      convertTemp(inputTemperature, outputTemperature) * 1000,
-      3
-    ) / 1000} ${selectedToText}`
-  );
+    $("#ans").html(
+      `${$("#temperatureInput").val()} ${selectedFromText} = ${Math.round(
+        convertTemp(inputTemperature, outputTemperature) * 1000,
+        3
+      ) / 1000} ${selectedToText}`
+    );
+  } else {
+    $("#ans").html(`...`);
+    $("#temperatureInput").addClass("border-danger");
+  }
 }
 
 $(document).ready(function() {
