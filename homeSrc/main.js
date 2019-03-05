@@ -13,6 +13,10 @@ const profile = {
     sada: {
       link: "https://themes.gohugo.io/sada/",
       description: "A simple gohugo theme made using Bootstrap 4"
+    },
+    mero: {
+      link: "https://themes.gohugo.io/mero/",
+      description: "gohugo theme for personal blogs"
     }
   }
 };
