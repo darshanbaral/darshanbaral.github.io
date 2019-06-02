@@ -1,0 +1,22 @@
+{
+  "name": "Darshan Baral",
+  "link": "https://www.darshanbaral.com",
+  "projects": {
+    "dna": {
+      "link": "https://darshanbaral.github.io/dna/",
+      "description": "A tool to manipulate dna sequences"
+    },
+    "callbreak": {
+      "link": "https://darshanbaral.github.io/callbreak/",
+      "description": "A tool to record socres during a game of Callbreak"
+    },
+    "sada": {
+      "link": "https://themes.gohugo.io/sada/",
+      "description": "A simple gohugo theme made using Bootstrap 4"
+    },
+    "mero": {
+      "link": "https://themes.gohugo.io/mero/",
+      "description": "gohugo theme for personal blogs"
+    }
+  }
+}
