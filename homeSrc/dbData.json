@@ -17,6 +17,10 @@
     "mero": {
       "link": "https://themes.gohugo.io/mero/",
       "description": "gohugo theme for personal blogs"
+    },
+    "kitab": {
+      "link": "https://themes.gohugo.io/kitab/",
+      "description": "gohugo theme for books"
     }
   }
 }
