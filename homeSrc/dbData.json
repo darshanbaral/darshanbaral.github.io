@@ -21,6 +21,10 @@
     "kitab": {
       "link": "https://themes.gohugo.io/kitab/",
       "description": "gohugo theme for books"
+    },
+    "khata": {
+      "link": "https://themes.gohugo.io/khata/",
+      "description": "gohugo theme for documentation/notekeeping"
     }
   }
 }
