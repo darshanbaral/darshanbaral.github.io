@@ -25,6 +25,10 @@
     "khata": {
       "link": "https://themes.gohugo.io/khata/",
       "description": "gohugo theme for documentation/notekeeping"
+    },
+    "Stack Exchange Data Explorer": {
+      "link": "https://data.stackexchange.com/users/32244/d-b",
+      "description": "Queries to explore stack exchange data"
     }
   }
 }
