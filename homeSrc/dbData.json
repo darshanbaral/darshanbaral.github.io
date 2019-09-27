@@ -14,6 +14,10 @@
       "link": "https://themes.gohugo.io/sada/",
       "description": "A simple gohugo theme made using Bootstrap 4"
     },
+    "aafu": {
+      "link": "https://themes.gohugo.io/aafu/",
+      "description": "Single page portfolio theme with accordion and dark theme"
+    },
     "mero": {
       "link": "https://themes.gohugo.io/mero/",
       "description": "gohugo theme for personal blogs"
