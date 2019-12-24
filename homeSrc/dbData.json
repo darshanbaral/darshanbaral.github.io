@@ -32,7 +32,7 @@
     },
     "Stack Exchange Data Explorer": {
       "link": "https://data.stackexchange.com/users/32244/d-b",
-      "description": "Queries to explore stack exchange data"
+      "description": "SQL Queries to explore stack exchange data"
     },
     "React Accordion": {
       "link": "https://darshanbaral.github.io/react-accordion/",
