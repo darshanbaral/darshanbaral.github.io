@@ -37,6 +37,10 @@
     "React Accordion": {
       "link": "https://darshanbaral.github.io/react-accordion/",
       "description": "Simple React accordion using useEffect hook"
+    },
+    "React Hamburger": {
+      "link": "https://darshanbaral.github.io/react-hamburger/",
+      "description": "Animated hamnurger menu made in react"
     }
   }
 }
