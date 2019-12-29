@@ -41,6 +41,10 @@
     "React Hamburger Menu": {
       "link": "https://darshanbaral.github.io/react-hamburger/",
       "description": "Animated hamburger menu made in react"
+    },
+    "Horizontal Bars": {
+      "link": "https://darshanbaral.github.io/react-hzbars/",
+      "description": "Animated horizontal bars to show skills/progress made in react"
     }
   }
 }
