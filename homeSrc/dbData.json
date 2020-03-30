@@ -45,6 +45,10 @@
     "Horizontal Bars": {
       "link": "https://darshanbaral.github.io/react-hzbars/",
       "description": "Animated horizontal bars to show skills/progress made in react"
+    },
+    "ghazal": {
+      "link": "https://github.com/darshanbaral/ghazal",
+      "description": "hugo theme for personal blogs"
     }
   }
 }
