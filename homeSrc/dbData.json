@@ -49,6 +49,10 @@
     "ghazal": {
       "link": "https://github.com/darshanbaral/ghazal",
       "description": "hugo theme for personal blogs"
+    },
+    "prastoot": {
+      "link": "https://prastootdemo.netlify.app/",
+      "description": "hugo theme for presentations"
     }
   }
 }
