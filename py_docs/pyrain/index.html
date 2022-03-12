@@ -5,8 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.10.0" />
 <title>pyrain API documentation</title>
-<meta name="description" content="A python package for rainfall simulation - stochastically generating synthetic rainfall time series data from
-observed data …" />
+<meta name="description" content="pyrain …" />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
 <link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
@@ -23,9 +22,50 @@ observed data …" />
 <h1 class="title">Package <code>pyrain</code></h1>
 </header>
 <section id="section-intro">
+<h1 id="pyrain">pyrain</h1>
 <p>A python package for rainfall simulation - stochastically generating synthetic rainfall time series data from
-observed data.</p>
-<p>By <a href="https://www.darshanbaral.com/">Darshan Baral</a></p>
+observed data. Made by <a href="https://www.darshanbaral.com/">Darshan Baral</a></p>
+<h2 id="method">Method</h2>
+<p>Synthetic rainfall data is generated from observed rainfall time-series data.</p>
+<ol>
+<li>The observed rainfall time-series data is separated into different water-years</li>
+<li>Total rainfall in each water-year is calculated to obtain <em>observed totals</em>.</li>
+<li>Classify <em>observed water-years</em> into buckets of <code>dry year</code>, <code>wet year</code>, and <code>normal year</code> based on pre-defined
+percentile threshold in the <em>observed totals</em>. By default, the water years where the observed total is less
+than or equal to the 25th percentile are classified as dry years. Similarly, the water years where the total
+rainfall is greater than or equal to the 75th percentile are classified as wet years. The remaining years are
+classified as normal years.</li>
+<li>Generate <em>synthetic totals</em>:<ul>
+<li>Fit a theoretical distribution to the <em>observed totals</em>. Can choose from <code>gamma</code>, <code>gev</code>, or <code>lognorm</code>.</li>
+<li>Generate the required number of <em>synthetic totals</em> from the theoretical distribution.</li>
+</ul>
+</li>
+<li>For each <em>synthetic total</em> value from Step <code>4</code>,<ul>
+<li>Determine whether the <em>synthetic total</em> would be classified as <code>dry year</code>, <code>wet year</code>, or <code>normal year</code> based on
+the threshold determined from the observed data (Step <code>4</code>).</li>
+<li>Pick blocks of short durations one at a time from different water-years randomly in the bucket determined
+above to collate a synthetic time series. By default, blocks of 3-days are used. For example, if
+the synthetic total is determined to belong to dry year bucket, first 3-days would come from a random
+observed water-year in dry bucket. Then the next 3-days would again come from a random water-year chosen
+from the dry bucket. Blocks would keep stacking one at a time from random water-years of dry bucket until
+we had a time series for the whole synthetic water-year.</li>
+<li>Normalize the time-series from above by its total and multiply by the <em>synthetic total</em>.</li>
+</ul>
+</li>
+</ol>
+<h2 id="installation">Installation</h2>
+<ol>
+<li>Download the latest distribution file <a href="https://github.com/darshanbaral/pyrain/releases"><code>pyrain-x.x.x.tar.gz</code></a>.</li>
+<li>Install the tar file with <code>pip install &lt;tar file&gt;</code>.</li>
+</ol>
+<h2 id="usage">Usage</h2>
+<pre><code class="language-python">import pyrain
+
+rain = pyrain.Rain(&quot;./data/hourly.csv&quot;, &quot;datetime&quot;, &quot;P&quot;)
+lib = pyrain.RainLibrary(rain)
+synthetic_rain = lib.generate(100, n_cores=4)
+</code></pre>
+<h2 id="links">Links</h2>
 <ul>
 <li><a href="https://github.com/darshanbaral/pyrain">GitHub</a></li>
 </ul>
@@ -49,7 +89,15 @@ observed data.</p>
 <nav id="sidebar">
 <h1>Index</h1>
 <div class="toc">
-<ul></ul>
+<ul>
+<li><a href="#pyrain">pyrain</a><ul>
+<li><a href="#method">Method</a></li>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#usage">Usage</a></li>
+<li><a href="#links">Links</a></li>
+</ul>
+</li>
+</ul>
 </div>
 <ul id="index">
 <li><h3><a href="#header-submodules">Sub-modules</a></h3>
