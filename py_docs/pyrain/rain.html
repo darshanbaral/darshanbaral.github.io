@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.10.0" />
-<title>pyrain.core API documentation</title>
+<title>pyrain.rain API documentation</title>
 <meta name="description" content="" />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
@@ -19,7 +19,7 @@
 <main>
 <article id="content">
 <header>
-<h1 class="title">Module <code>pyrain.core</code></h1>
+<h1 class="title">Module <code>pyrain.rain</code></h1>
 </header>
 <section id="section-intro">
 </section>
@@ -32,87 +32,86 @@
 <section>
 <h2 class="section-title" id="header-classes">Classes</h2>
 <dl>
-<dt id="pyrain.core.Rain"><code class="flex name class">
+<dt id="pyrain.rain.Rain"><code class="flex name class">
 <span>class <span class="ident">Rain</span></span>
-<span>(</span><span>path: str, datetime_col: str, rain_col: str, date_format: str = None)</span>
+<span>(</span><span>data, time_step)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Read and prepare rain data for library creation.</p>
-<h2 id="args">Args</h2>
+<div class="desc"><p>class that holds rainfall data in wide format and provides useful attributes and methods for viewing results. this
+class is inherited by <a href="./rain_library.html"><code>RainLibrary</code></a> and <a href="./synthetic_rain.html"><code>SyntheticRain</code></a>.</p></div>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="pyrain.rain_library.RainLibrary" href="rain_library.html#pyrain.rain_library.RainLibrary">RainLibrary</a></li>
+<li><a title="pyrain.synthetic_rain.SyntheticRain" href="synthetic_rain.html#pyrain.synthetic_rain.SyntheticRain">SyntheticRain</a></li>
+</ul>
+<h3>Instance variables</h3>
 <dl>
-<dt><strong><code>path</code></strong></dt>
-<dd>path to the csv file containing rain data</dd>
-<dt><strong><code>datetime_col</code></strong></dt>
-<dd>name of the datetime column in the csv</dd>
-<dt><strong><code>rain_col</code></strong></dt>
-<dd>name of the rain column in the csv</dd>
-<dt><strong><code>date_format</code></strong></dt>
-<dd>format to use for parsing datetime column</dd>
-</dl></div>
+<dt id="pyrain.rain.Rain.data"><code class="name">var <span class="ident">data</span></code></dt>
+<dd>
+<div class="desc"><p><code>DataFrame</code> containing rainfall data in wide format. columns are different water years. index is <code>DatetimeIndex</code>
+that goes from 2018 to 2019.</p></div>
 </dd>
-<dt id="pyrain.core.RainLibrary"><code class="flex name class">
-<span>class <span class="ident">RainLibrary</span></span>
-<span>(</span><span>rain: <a title="pyrain.core.Rain" href="#pyrain.core.Rain">Rain</a>, year_start: int = 9, block_size: Union[str, pandas._libs.tslibs.timedeltas.Timedelta] = '3D', dry_year_break: float = 0.25, wet_year_break: float = 0.75)</span>
-</code></dt>
+<dt id="pyrain.rain.Rain.time_step"><code class="name">var <span class="ident">time_step</span></code></dt>
 <dd>
-<div class="desc"><p>Library created from observed rainfall data.</p>
-<h2 id="args">Args</h2>
-<dl>
-<dt><strong><code>rain</code></strong></dt>
-<dd>rain data of class <code><a title="pyrain.core.Rain" href="#pyrain.core.Rain">Rain</a></code></dd>
-<dt><strong><code>year_start</code></strong></dt>
-<dd>the month when the water year starts</dd>
-<dt><strong><code>block_size</code></strong></dt>
-<dd><code>pandas Timedelta</code> that counts as one block when sampling randomly for generation of
-synthetic rainfall data</dd>
-<dt><strong><code>dry_year_break</code></strong></dt>
-<dd>water year with totals less than the value corresponding to this percentile will be
-regarded as dry year</dd>
-<dt><strong><code>wet_year_break</code></strong></dt>
-<dd>water year with totals more than the value corresponding to this percentile will be
-regarded as wet year</dd>
-</dl></div>
+<div class="desc"><p>time step of the rainfall data.</p></div>
+</dd>
+<dt id="pyrain.rain.Rain.totals"><code class="name">var <span class="ident">totals</span></code></dt>
+<dd>
+<div class="desc"><p>the total rainfall in each water-year</p></div>
+</dd>
+</dl>
 <h3>Methods</h3>
 <dl>
-<dt id="pyrain.core.RainLibrary.generate"><code class="name flex">
-<span>def <span class="ident">generate</span></span>(<span>self, size: int, dist: str = 'gamma', n_cores: int = 1) ‑> <a title="pyrain.core.SyntheticRain" href="#pyrain.core.SyntheticRain">SyntheticRain</a></span>
+<dt id="pyrain.rain.Rain.get_exceedance"><code class="name flex">
+<span>def <span class="ident">get_exceedance</span></span>(<span>self, windows, n_digits=2, probs=None)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>generate synthetic rainfall time-series data</p>
+<div class="desc"><p>for annual maxima values of rainfall depths of durations in <code>windows</code>, calculate probability of being equalled
+or exceeded.</p>
 <h2 id="args">Args</h2>
 <dl>
-<dt><strong><code>size</code></strong></dt>
-<dd>the size (number of water-years) of randomly generated data</dd>
-<dt><strong><code>dist</code></strong></dt>
-<dd>name of distribution to use. must be one of <code>gamma</code>, <code>gev</code>, or <code>lognorm</code></dd>
-<dt><strong><code>n_cores</code></strong></dt>
-<dd>number of cores to use in parallel, if available</dd>
+<dt><strong><code>windows</code></strong></dt>
+<dd>time duration over which rainfall values will be totalled</dd>
+<dt><strong><code>n_digits</code></strong></dt>
+<dd>rainfall values will be rounded to this many decimal places before calculating totals</dd>
+<dt><strong><code>probs</code></strong></dt>
+<dd>optional parameter indicating the exceedance probabilities for which corresponding rainfall
+values will be interpolated and returned.</dd>
 </dl>
 <h2 id="returns">Returns</h2>
-<p>Synthetic rainfall time-series data for <code>size</code> number of water-years</p></div>
+<p>if <code>probs</code> is provided, a <code>DataFrame</code> where the <code>index</code> is <code>probs</code> and columns are <code>windows</code>. if <code>probs</code>
+is empty, If empty, a <code>dict</code> of <code>DataFrame</code> where the keys are <code>probs</code>.</p></div>
 </dd>
-</dl>
-</dd>
-<dt id="pyrain.core.SyntheticRain"><code class="flex name class">
-<span>class <span class="ident">SyntheticRain</span></span>
-<span>(</span><span>data: pandas.core.frame.DataFrame, time_step: pandas._libs.tslibs.timedeltas.Timedelta, block_size: pandas._libs.tslibs.timedeltas.Timedelta, dist_name: str, dist_params: tuple)</span>
+<dt id="pyrain.rain.Rain.get_summary"><code class="name flex">
+<span>def <span class="ident">get_summary</span></span>(<span>self, funcs='sum', group_by=None)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Class that holds synthetic rainfall data.</p>
+<div class="desc"><h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>funcs</code></strong></dt>
+<dd>the functions to use for summarizing. default is <code>sum</code>. can also be a list of functions.</dd>
+<dt><strong><code>group_by</code></strong></dt>
+<dd>the duration by which the summary should be grouped by - <code>offset alias</code></dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p><code>Dataframe</code>: summary data</p></div>
+</dd>
+<dt id="pyrain.rain.Rain.get_wet_period_count"><code class="name flex">
+<span>def <span class="ident">get_wet_period_count</span></span>(<span>self, period, group_by=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>calculate number of wet periods in each water year</p>
 <h2 id="args">Args</h2>
 <dl>
-<dt><strong><code>data</code></strong></dt>
-<dd>the synthetic rainfall time-series data - <code>pandas.DataFrame</code></dd>
-<dt><strong><code>time_step</code></strong></dt>
-<dd>the time-step of the synthetic rainfall time-series data (same as the time-step of the
-observed data) - <code>pandas.Timedelta</code></dd>
-<dt><strong><code>block_size</code></strong></dt>
-<dd>block size duration used for collating synthetic data - <code>pandas.Timedelta</code></dd>
-<dt><strong><code>dist_name</code></strong></dt>
-<dd>name of distribution used for generating synthetic water-year totals</dd>
-<dt><strong><code>dist_params</code></strong></dt>
-<dd>parameters from fitting <code>dist_name</code> distribution to observed water-year totals</dd>
-</dl></div>
+<dt><strong><code>period</code></strong></dt>
+<dd>the duration of wet-periods to count - <code>offset alias</code></dd>
+<dt><strong><code>group_by</code></strong></dt>
+<dd>the duration by which the period counts should be grouped by - <code>offset alias</code></dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p><code>Dataframe</code>: counts of <code>period</code> duration with rainfall by <code>group_by</code> duration</p></div>
+</dd>
+</dl>
 </dd>
 </dl>
 </section>
@@ -131,16 +130,15 @@ observed data) - <code>pandas.Timedelta</code></dd>
 <li><h3><a href="#header-classes">Classes</a></h3>
 <ul>
 <li>
-<h4><code><a title="pyrain.core.Rain" href="#pyrain.core.Rain">Rain</a></code></h4>
-</li>
-<li>
-<h4><code><a title="pyrain.core.RainLibrary" href="#pyrain.core.RainLibrary">RainLibrary</a></code></h4>
+<h4><code><a title="pyrain.rain.Rain" href="#pyrain.rain.Rain">Rain</a></code></h4>
 <ul class="">
-<li><code><a title="pyrain.core.RainLibrary.generate" href="#pyrain.core.RainLibrary.generate">generate</a></code></li>
+<li><code><a title="pyrain.rain.Rain.data" href="#pyrain.rain.Rain.data">data</a></code></li>
+<li><code><a title="pyrain.rain.Rain.get_exceedance" href="#pyrain.rain.Rain.get_exceedance">get_exceedance</a></code></li>
+<li><code><a title="pyrain.rain.Rain.get_summary" href="#pyrain.rain.Rain.get_summary">get_summary</a></code></li>
+<li><code><a title="pyrain.rain.Rain.get_wet_period_count" href="#pyrain.rain.Rain.get_wet_period_count">get_wet_period_count</a></code></li>
+<li><code><a title="pyrain.rain.Rain.time_step" href="#pyrain.rain.Rain.time_step">time_step</a></code></li>
+<li><code><a title="pyrain.rain.Rain.totals" href="#pyrain.rain.Rain.totals">totals</a></code></li>
 </ul>
-</li>
-<li>
-<h4><code><a title="pyrain.core.SyntheticRain" href="#pyrain.core.SyntheticRain">SyntheticRain</a></code></h4>
 </li>
 </ul>
 </li>
@@ -148,6 +146,7 @@ observed data) - <code>pandas.Timedelta</code></dd>
 </nav>
 </main>
 <footer id="footer">
+By <a href="https://www.darshanbaral.com/" target="_blank">Darshan Baral</a>
 <p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
 </footer>
 </body>
