@@ -61,7 +61,6 @@ we had a time series for the whole synthetic water-year.</li>
 <h2 id="usage">Usage</h2>
 <pre><code class="language-python">import pyrain
 
-# process raw data by using &lt;a href=&quot;https://darshanbaral.github.io/py_docs/pyrain/core.html#pyrain.core.Rain&quot;&gt;Rain&lt;/a&gt; class
 rain = pyrain.Rain(&quot;./data/hourly.csv&quot;, &quot;datetime&quot;, &quot;P&quot;)
 lib = rain.create_library()
 synthetic_rain = lib.generate(100, n_cores=4)
