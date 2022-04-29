@@ -34,7 +34,7 @@
 <dl>
 <dt id="pyrain.synthetic_rain.SyntheticRain"><code class="flex name class">
 <span>class <span class="ident">SyntheticRain</span></span>
-<span>(</span><span>data, time_step, block_size, dist_name, dist_params)</span>
+<span>(</span><span>data, time_step, dist_name, dist_params, low, high)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Class that holds synthetic rainfall data. inherits <a href="./rain.html"><code>Rain</code></a></p></div>
@@ -44,10 +44,6 @@
 </ul>
 <h3>Instance variables</h3>
 <dl>
-<dt id="pyrain.synthetic_rain.SyntheticRain.block_size"><code class="name">var <span class="ident">block_size</span></code></dt>
-<dd>
-<div class="desc"><p>block size duration used for collating synthetic data - <code>Timedelta</code></p></div>
-</dd>
 <dt id="pyrain.synthetic_rain.SyntheticRain.dist_name"><code class="name">var <span class="ident">dist_name</span></code></dt>
 <dd>
 <div class="desc"><p>name of distribution used for generating synthetic water-year totals</p></div>
@@ -55,6 +51,14 @@
 <dt id="pyrain.synthetic_rain.SyntheticRain.dist_params"><code class="name">var <span class="ident">dist_params</span></code></dt>
 <dd>
 <div class="desc"><p>parameters from fitting <code>dist_name</code> distribution to observed water-year totals</p></div>
+</dd>
+<dt id="pyrain.synthetic_rain.SyntheticRain.high"><code class="name">var <span class="ident">high</span></code></dt>
+<dd>
+<div class="desc"><p>Duration of largest block used for randomly collating synthetic data</p></div>
+</dd>
+<dt id="pyrain.synthetic_rain.SyntheticRain.low"><code class="name">var <span class="ident">low</span></code></dt>
+<dd>
+<div class="desc"><p>Duration of smallest block used for randomly collating synthetic data</p></div>
 </dd>
 </dl>
 <h3>Methods</h3>
@@ -83,8 +87,9 @@
 <ul class="hlist">
 <li><code><a title="pyrain.rain.Rain.data" href="rain.html#pyrain.rain.Rain.data">data</a></code></li>
 <li><code><a title="pyrain.rain.Rain.get_exceedance" href="rain.html#pyrain.rain.Rain.get_exceedance">get_exceedance</a></code></li>
+<li><code><a title="pyrain.rain.Rain.get_storm_duration_summary" href="rain.html#pyrain.rain.Rain.get_storm_duration_summary">get_storm_duration_summary</a></code></li>
 <li><code><a title="pyrain.rain.Rain.get_summary" href="rain.html#pyrain.rain.Rain.get_summary">get_summary</a></code></li>
-<li><code><a title="pyrain.rain.Rain.get_wet_period_count" href="rain.html#pyrain.rain.Rain.get_wet_period_count">get_wet_period_count</a></code></li>
+<li><code><a title="pyrain.rain.Rain.get_total_wet_periods" href="rain.html#pyrain.rain.Rain.get_total_wet_periods">get_total_wet_periods</a></code></li>
 <li><code><a title="pyrain.rain.Rain.time_step" href="rain.html#pyrain.rain.Rain.time_step">time_step</a></code></li>
 <li><code><a title="pyrain.rain.Rain.totals" href="rain.html#pyrain.rain.Rain.totals">totals</a></code></li>
 </ul>
@@ -110,9 +115,10 @@
 <li>
 <h4><code><a title="pyrain.synthetic_rain.SyntheticRain" href="#pyrain.synthetic_rain.SyntheticRain">SyntheticRain</a></code></h4>
 <ul class="">
-<li><code><a title="pyrain.synthetic_rain.SyntheticRain.block_size" href="#pyrain.synthetic_rain.SyntheticRain.block_size">block_size</a></code></li>
 <li><code><a title="pyrain.synthetic_rain.SyntheticRain.dist_name" href="#pyrain.synthetic_rain.SyntheticRain.dist_name">dist_name</a></code></li>
 <li><code><a title="pyrain.synthetic_rain.SyntheticRain.dist_params" href="#pyrain.synthetic_rain.SyntheticRain.dist_params">dist_params</a></code></li>
+<li><code><a title="pyrain.synthetic_rain.SyntheticRain.high" href="#pyrain.synthetic_rain.SyntheticRain.high">high</a></code></li>
+<li><code><a title="pyrain.synthetic_rain.SyntheticRain.low" href="#pyrain.synthetic_rain.SyntheticRain.low">low</a></code></li>
 <li><code><a title="pyrain.synthetic_rain.SyntheticRain.save" href="#pyrain.synthetic_rain.SyntheticRain.save">save</a></code></li>
 </ul>
 </li>

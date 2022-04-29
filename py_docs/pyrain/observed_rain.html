@@ -34,14 +34,14 @@
 <dl>
 <dt id="pyrain.observed_rain.ObservedRain"><code class="flex name class">
 <span>class <span class="ident">ObservedRain</span></span>
-<span>(</span><span>path, datetime_col, rain_col, date_format=None)</span>
+<span>(</span><span>rain, datetime_col, rain_col, date_format=None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Class that facilitates reading raw rainfall data and preparing for library creation.</p>
 <h2 id="args">Args</h2>
 <dl>
-<dt><strong><code>path</code></strong></dt>
-<dd>path to the csv file containing rain data</dd>
+<dt><strong><code>rain</code></strong></dt>
+<dd>pandas Dataframe with rain data or path to the csv file containing rain data</dd>
 <dt><strong><code>datetime_col</code></strong></dt>
 <dd>name of the datetime column in the csv</dd>
 <dt><strong><code>rain_col</code></strong></dt>
@@ -63,7 +63,7 @@
 <h3>Methods</h3>
 <dl>
 <dt id="pyrain.observed_rain.ObservedRain.create_library"><code class="name flex">
-<span>def <span class="ident">create_library</span></span>(<span>self, year_start=9, block_size='3D', dry_year_break=0.25, wet_year_break=0.75)</span>
+<span>def <span class="ident">create_library</span></span>(<span>self, year_start=9, dry_year_break=0.25, wet_year_break=0.75)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>create a library o facilitate synthetic rainfall generation. converts rainfall data in long format to wide
@@ -74,8 +74,6 @@ months are dropped. In wide format, all water years will have same datetime inde
 <dl>
 <dt><strong><code>year_start</code></strong></dt>
 <dd>the month when the water year starts. default is <code>9</code> (for September)</dd>
-<dt><strong><code>block_size</code></strong></dt>
-<dd>duration of blocks that will be later randomly collated to generate synthetic rain</dd>
 <dt><strong><code>dry_year_break</code></strong></dt>
 <dd>water year with totals less than the value corresponding to this percentile will be
 regarded as dry year</dd>

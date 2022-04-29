@@ -44,9 +44,9 @@ classified as normal years.</li>
 <li>Determine whether the <em>synthetic total</em> would be classified as <code>dry year</code>, <code>wet year</code>, or <code>normal year</code> based on
 the threshold determined from the observed data (Step <code>4</code>).</li>
 <li>Pick blocks of short durations one at a time from different water-years randomly in the bucket determined
-above to collate a synthetic time series. By default, blocks of 3-days are used. For example, if
-the synthetic total is determined to belong to dry year bucket, first 3-days would come from a random
-observed water-year in dry bucket. Then the next 3-days would again come from a random water-year chosen
+above to collate a synthetic time series. By default, blocks of durations between 6 hours and 7 days are used. For example, if
+the synthetic total is determined to belong to dry year bucket, first randomly chosen n-days (6H &lt; n &lt; 7D)would come from a random
+observed water-year in dry bucket. Then the next randomly chosen m-days (6H &lt; m &lt; 7D) would again come from a random water-year chosen
 from the dry bucket. Blocks would keep stacking one at a time from random water-years of dry bucket until
 we had a time series for the whole synthetic water-year.</li>
 <li>Normalize the time-series from above by its total and multiply by the <em>synthetic total</em>.</li>

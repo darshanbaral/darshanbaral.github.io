@@ -82,11 +82,32 @@ values will be interpolated and returned.</dd>
 <p>if <code>probs</code> is provided, a <code>DataFrame</code> where the <code>index</code> is <code>probs</code> and columns are <code>windows</code>. if <code>probs</code>
 is empty, If empty, a <code>dict</code> of <code>DataFrame</code> where the keys are <code>probs</code>.</p></div>
 </dd>
+<dt id="pyrain.rain.Rain.get_storm_duration_summary"><code class="name flex">
+<span>def <span class="ident">get_storm_duration_summary</span></span>(<span>self, funcs, group_by=None, min_dur=None, ignore_dur='1H')</span>
+</code></dt>
+<dd>
+<div class="desc"><p><em>summarize rainfall data for each water year by storm durations</em></p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>funcs</code></strong></dt>
+<dd>the functions to use for summarizing. default is <code>sum</code>. can also be a list of functions.</dd>
+<dt><strong><code>group_by</code></strong></dt>
+<dd>the duration by which the summary should be grouped by - <code>offset alias</code></dd>
+<dt><strong><code>min_dur</code></strong></dt>
+<dd>the minimum duration of incremental periods to use for summarizing data
+default is 4 times the time step</dd>
+<dt><strong><code>ignore_dur</code></strong></dt>
+<dd>dry periods smaller than this duration will be considered part of wet period</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p><code>pandas.DataFrame</code>: summary by duration of storms</p></div>
+</dd>
 <dt id="pyrain.rain.Rain.get_summary"><code class="name flex">
 <span>def <span class="ident">get_summary</span></span>(<span>self, funcs='sum', group_by=None)</span>
 </code></dt>
 <dd>
-<div class="desc"><h2 id="args">Args</h2>
+<div class="desc"><p>summarize rainfall data for each water</p>
+<h2 id="args">Args</h2>
 <dl>
 <dt><strong><code>funcs</code></strong></dt>
 <dd>the functions to use for summarizing. default is <code>sum</code>. can also be a list of functions.</dd>
@@ -96,11 +117,11 @@ is empty, If empty, a <code>dict</code> of <code>DataFrame</code> where the keys
 <h2 id="returns">Returns</h2>
 <p><code>Dataframe</code>: summary data</p></div>
 </dd>
-<dt id="pyrain.rain.Rain.get_wet_period_count"><code class="name flex">
-<span>def <span class="ident">get_wet_period_count</span></span>(<span>self, period, group_by=None)</span>
+<dt id="pyrain.rain.Rain.get_total_wet_periods"><code class="name flex">
+<span>def <span class="ident">get_total_wet_periods</span></span>(<span>self, period, group_by=None)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>calculate number of wet periods in each water year</p>
+<div class="desc"><p><em>calculate total number of wet periods in each water year - e.g. total wet hours ech year</em></p>
 <h2 id="args">Args</h2>
 <dl>
 <dt><strong><code>period</code></strong></dt>
@@ -134,8 +155,9 @@ is empty, If empty, a <code>dict</code> of <code>DataFrame</code> where the keys
 <ul class="">
 <li><code><a title="pyrain.rain.Rain.data" href="#pyrain.rain.Rain.data">data</a></code></li>
 <li><code><a title="pyrain.rain.Rain.get_exceedance" href="#pyrain.rain.Rain.get_exceedance">get_exceedance</a></code></li>
+<li><code><a title="pyrain.rain.Rain.get_storm_duration_summary" href="#pyrain.rain.Rain.get_storm_duration_summary">get_storm_duration_summary</a></code></li>
 <li><code><a title="pyrain.rain.Rain.get_summary" href="#pyrain.rain.Rain.get_summary">get_summary</a></code></li>
-<li><code><a title="pyrain.rain.Rain.get_wet_period_count" href="#pyrain.rain.Rain.get_wet_period_count">get_wet_period_count</a></code></li>
+<li><code><a title="pyrain.rain.Rain.get_total_wet_periods" href="#pyrain.rain.Rain.get_total_wet_periods">get_total_wet_periods</a></code></li>
 <li><code><a title="pyrain.rain.Rain.time_step" href="#pyrain.rain.Rain.time_step">time_step</a></code></li>
 <li><code><a title="pyrain.rain.Rain.totals" href="#pyrain.rain.Rain.totals">totals</a></code></li>
 </ul>

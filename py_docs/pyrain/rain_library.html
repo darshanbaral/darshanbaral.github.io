@@ -28,13 +28,32 @@
 <section>
 </section>
 <section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="pyrain.rain_library.load_synthetic_rain"><code class="name flex">
+<span>def <span class="ident">load_synthetic_rain</span></span>(<span>data_path, info_path=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>load saved synthetic rain data.
+see <a href="./synthetic_rain.html#pyrain.synthetic_rain.SyntheticRain.save"><code>SyntheticRain.save()</code></a></p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>data_path</code></strong></dt>
+<dd>path to the rainfall data csv</dd>
+<dt><strong><code>info_path</code></strong></dt>
+<dd>path to the rainfall data info</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p><a href="./synthetic_rain.html"><code>SyntheticRain</code></a></p></div>
+</dd>
+</dl>
 </section>
 <section>
 <h2 class="section-title" id="header-classes">Classes</h2>
 <dl>
 <dt id="pyrain.rain_library.RainLibrary"><code class="flex name class">
 <span>class <span class="ident">RainLibrary</span></span>
-<span>(</span><span>rain, time_step, year_start, block_size, dry_year_break, wet_year_break)</span>
+<span>(</span><span>rain, time_step, year_start, dry_year_break, wet_year_break)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Library created from observed rainfall data. inherits <a href="./rain.html"><code>Rain</code></a>.</p>
@@ -44,9 +63,6 @@
 <dd>rain data of class <code>Rain</code></dd>
 <dt><strong><code>year_start</code></strong></dt>
 <dd>the month when the water year starts</dd>
-<dt><strong><code>block_size</code></strong></dt>
-<dd><code>pandas Timedelta</code> that counts as one block when sampling randomly for generation of
-synthetic rainfall data</dd>
 <dt><strong><code>dry_year_break</code></strong></dt>
 <dd>water year with totals less than the value corresponding to this percentile will be
 regarded as dry year</dd>
@@ -60,15 +76,6 @@ regarded as wet year</dd>
 </ul>
 <h3>Instance variables</h3>
 <dl>
-<dt id="pyrain.rain_library.RainLibrary.block_size"><code class="name">var <span class="ident">block_size</span></code></dt>
-<dd>
-<div class="desc"><p>the duration of short blocks used for randomly collating synthetic rainfall</p></div>
-</dd>
-<dt id="pyrain.rain_library.RainLibrary.blocks"><code class="name">var <span class="ident">blocks</span></code></dt>
-<dd>
-<div class="desc"><p>The unique block numbers for consecutive duration of short blocks used for randomly collating synthetic
-rainfall</p></div>
-</dd>
 <dt id="pyrain.rain_library.RainLibrary.distribution_params"><code class="name">var <span class="ident">distribution_params</span></code></dt>
 <dd>
 <div class="desc"><p>parameters from fitting water year totals in observed data to theoretical distribution</p></div>
@@ -93,7 +100,7 @@ rainfall</p></div>
 <h3>Methods</h3>
 <dl>
 <dt id="pyrain.rain_library.RainLibrary.generate"><code class="name flex">
-<span>def <span class="ident">generate</span></span>(<span>self, size, dist='gamma', n_cores=1, n_digits=2)</span>
+<span>def <span class="ident">generate</span></span>(<span>self, size, dist='gamma', low='6H', high='7D', n_digits=2)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>generate synthetic rainfall time-series data</p>
@@ -103,8 +110,10 @@ rainfall</p></div>
 <dd>the size (number of water-years) of randomly generated data</dd>
 <dt><strong><code>dist</code></strong></dt>
 <dd>name of distribution to use. must be one of <code>gamma</code>, <code>gev</code>, or <code>lognorm</code></dd>
-<dt><strong><code>n_cores</code></strong></dt>
-<dd>number of cores to use in parallel, if available</dd>
+<dt><strong><code>low</code></strong></dt>
+<dd>"duration of smallest block used for randomly collating synthetic data"</dd>
+<dt><strong><code>high</code></strong></dt>
+<dd>"duration of largest block used for randomly collating synthetic data"</dd>
 <dt><strong><code>n_digits</code></strong></dt>
 <dd>generated rainfall will be rounded to this many decimal places</dd>
 </dl>
@@ -118,8 +127,9 @@ rainfall</p></div>
 <ul class="hlist">
 <li><code><a title="pyrain.rain.Rain.data" href="rain.html#pyrain.rain.Rain.data">data</a></code></li>
 <li><code><a title="pyrain.rain.Rain.get_exceedance" href="rain.html#pyrain.rain.Rain.get_exceedance">get_exceedance</a></code></li>
+<li><code><a title="pyrain.rain.Rain.get_storm_duration_summary" href="rain.html#pyrain.rain.Rain.get_storm_duration_summary">get_storm_duration_summary</a></code></li>
 <li><code><a title="pyrain.rain.Rain.get_summary" href="rain.html#pyrain.rain.Rain.get_summary">get_summary</a></code></li>
-<li><code><a title="pyrain.rain.Rain.get_wet_period_count" href="rain.html#pyrain.rain.Rain.get_wet_period_count">get_wet_period_count</a></code></li>
+<li><code><a title="pyrain.rain.Rain.get_total_wet_periods" href="rain.html#pyrain.rain.Rain.get_total_wet_periods">get_total_wet_periods</a></code></li>
 <li><code><a title="pyrain.rain.Rain.time_step" href="rain.html#pyrain.rain.Rain.time_step">time_step</a></code></li>
 <li><code><a title="pyrain.rain.Rain.totals" href="rain.html#pyrain.rain.Rain.totals">totals</a></code></li>
 </ul>
@@ -140,13 +150,16 @@ rainfall</p></div>
 <li><code><a title="pyrain" href="index.html">pyrain</a></code></li>
 </ul>
 </li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="pyrain.rain_library.load_synthetic_rain" href="#pyrain.rain_library.load_synthetic_rain">load_synthetic_rain</a></code></li>
+</ul>
+</li>
 <li><h3><a href="#header-classes">Classes</a></h3>
 <ul>
 <li>
 <h4><code><a title="pyrain.rain_library.RainLibrary" href="#pyrain.rain_library.RainLibrary">RainLibrary</a></code></h4>
 <ul class="two-column">
-<li><code><a title="pyrain.rain_library.RainLibrary.block_size" href="#pyrain.rain_library.RainLibrary.block_size">block_size</a></code></li>
-<li><code><a title="pyrain.rain_library.RainLibrary.blocks" href="#pyrain.rain_library.RainLibrary.blocks">blocks</a></code></li>
 <li><code><a title="pyrain.rain_library.RainLibrary.distribution_params" href="#pyrain.rain_library.RainLibrary.distribution_params">distribution_params</a></code></li>
 <li><code><a title="pyrain.rain_library.RainLibrary.dry_year_break" href="#pyrain.rain_library.RainLibrary.dry_year_break">dry_year_break</a></code></li>
 <li><code><a title="pyrain.rain_library.RainLibrary.generate" href="#pyrain.rain_library.RainLibrary.generate">generate</a></code></li>
