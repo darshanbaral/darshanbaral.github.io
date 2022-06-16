@@ -30,25 +30,11 @@ observed data. Made by <a href="https://www.darshanbaral.com/">Darshan Baral</a>
 <ol>
 <li>The observed rainfall time-series data is separated into different water-years</li>
 <li>Total rainfall in each water-year is calculated to obtain <em>observed totals</em>.</li>
-<li>Classify <em>observed water-years</em> into buckets of <code>dry year</code>, <code>wet year</code>, and <code>normal year</code> based on pre-defined
-percentile threshold in the <em>observed totals</em>. By default, the water years where the observed total is less
-than or equal to the 25th percentile are classified as dry years. Similarly, the water years where the total
-rainfall is greater than or equal to the 75th percentile are classified as wet years. The remaining years are
-classified as normal years.</li>
-<li>Generate <em>synthetic totals</em>:<ul>
-<li>Fit a theoretical distribution to the <em>observed totals</em>. Can choose from <code>gamma</code>, <code>gev</code>, or <code>lognorm</code>.</li>
-<li>Generate the required number of <em>synthetic totals</em> from the theoretical distribution.</li>
-</ul>
-</li>
+<li><em>Observed water-years</em> are classified into buckets of <code>dry year</code>, <code>wet year</code>, and <code>normal year</code> based on pre-defined percentile threshold in the <em>observed totals</em>. By default, the water years where the observed total is less than or equal to the 25th percentile are classified as dry years. Similarly, the water years where the total rainfall is greater than or equal to the 75th percentile are classified as wet years. The remaining years are classified as normal years.</li>
+<li>Required number of <em>synthetic totals</em> are drawn from a theoretical distribution fitted to the <em>observed totals</em>. Can choose from <code>beta</code>, <code>expon</code>, <code>gamma</code>, <code>genpareto</code>, <code>gev</code>, <code>lognorm</code>, <code>logpearson3</code>, <code>kappa3</code>, <code>pearson3</code>, and <code>weibull_min</code></li>
 <li>For each <em>synthetic total</em> value from Step <code>4</code>,<ul>
-<li>Determine whether the <em>synthetic total</em> would be classified as <code>dry year</code>, <code>wet year</code>, or <code>normal year</code> based on
-the threshold determined from the observed data (Step <code>4</code>).</li>
-<li>Pick blocks of short durations one at a time from different water-years randomly in the bucket determined
-above to collate a synthetic time series. By default, blocks of durations between 6 hours and 7 days are used. For example, if
-the synthetic total is determined to belong to dry year bucket, first randomly chosen n-days (6H &lt; n &lt; 7D)would come from a random
-observed water-year in dry bucket. Then the next randomly chosen m-days (6H &lt; m &lt; 7D) would again come from a random water-year chosen
-from the dry bucket. Blocks would keep stacking one at a time from random water-years of dry bucket until
-we had a time series for the whole synthetic water-year.</li>
+<li>Determine whether the <em>synthetic total</em> would be classified as <code>dry year</code>, <code>wet year</code>, or <code>normal year</code> based on the threshold determined from the observed data (Step <code>3</code>).</li>
+<li>Pick blocks of short durations one at a time from different water-years randomly in the bucket determined above to collate a synthetic time series. By default, blocks of durations between 6 hours and 7 days are used. For example, if the synthetic total is determined to belong to dry year bucket, first randomly chosen n-days (6H &lt; n &lt; 7D)would come from a random observed water-year in dry bucket. Then the next randomly chosen m-days (6H &lt; m &lt; 7D) would again come from a random water-year chosen from the dry bucket. Blocks would keep stacking one at a time from random water-years of dry bucket until we had a time series for the whole synthetic water-year.</li>
 <li>Normalize the time-series from above by its total and multiply by the <em>synthetic total</em>.</li>
 </ul>
 </li>
@@ -61,13 +47,16 @@ we had a time series for the whole synthetic water-year.</li>
 <h2 id="usage">Usage</h2>
 <pre><code class="language-python">import pyrain
 
-rain = pyrain.Rain(&quot;./data/hourly.csv&quot;, &quot;datetime&quot;, &quot;P&quot;)
+rain = pyrain.ObservedRain(rain=r&quot;./data/hourly_raw.csv&quot;,
+                           datetime_col=&quot;datetime&quot;,
+                           rain_col=&quot;P&quot;)
 lib = rain.create_library()
-synthetic_rain = lib.generate(100, n_cores=4)
+synthetic_rain = lib.generate(100)
 </code></pre>
 <h2 id="links">Links</h2>
 <ul>
 <li><a href="https://github.com/darshanbaral/pyrain">GitHub</a></li>
+<li><a href="https://github.com/darshanbaral/pyrain/tree/master/data">Example Data</a></li>
 </ul>
 </section>
 <section>
