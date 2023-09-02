@@ -11,23 +11,23 @@
       "description": "A tool to record socres during a game of Callbreak"
     },
     "sada": {
-      "link": "https://themes.gohugo.io/sada/",
+      "link": "https://github.com/darshanbaral/sada/",
       "description": "A simple gohugo theme made using Bootstrap 4"
     },
     "aafu": {
-      "link": "https://themes.gohugo.io/aafu/",
+      "link": "https://github.com/darshanbaral/aafu/",
       "description": "Single page portfolio theme with accordion and dark theme"
     },
     "mero": {
-      "link": "https://themes.gohugo.io/mero/",
+      "link": "https://github.com/darshanbaral/mero/",
       "description": "gohugo theme for personal blogs"
     },
     "kitab": {
-      "link": "https://themes.gohugo.io/kitab/",
+      "link": "https://github.com/darshanbaral/kitab/",
       "description": "gohugo theme for books"
     },
     "khata": {
-      "link": "https://themes.gohugo.io/khata/",
+      "link": "https://github.com/darshanbaral/khata/",
       "description": "gohugo theme for documentation/notekeeping"
     },
     "ghazal": {
@@ -35,7 +35,7 @@
       "description": "hugo theme for personal blogs"
     },
     "prastoot": {
-      "link": "https://prastootdemo.netlify.app/",
+      "link": "https://github.com/darshanbaral/prastoot/",
       "description": "hugo theme for presentations"
     }
   }
