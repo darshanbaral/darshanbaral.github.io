@@ -2,10 +2,6 @@
   "name": "Darshan Baral",
   "link": "https://www.darshanbaral.com",
   "projects": {
-    "dna": {
-      "link": "https://darshanbaral.github.io/dna/",
-      "description": "A tool to manipulate dna sequences"
-    },
     "sada": {
       "link": "https://github.com/darshanbaral/sada/",
       "description": "A simple gohugo theme made using Bootstrap 4"
@@ -14,25 +10,10 @@
       "link": "https://github.com/darshanbaral/aafu/",
       "description": "Single page portfolio theme with accordion and dark theme"
     },
-    "mero": {
-      "link": "https://github.com/darshanbaral/mero/",
-      "description": "gohugo theme for personal blogs"
-    },
+
     "kitab": {
       "link": "https://github.com/darshanbaral/kitab/",
       "description": "gohugo theme for books"
-    },
-    "khata": {
-      "link": "https://github.com/darshanbaral/khata/",
-      "description": "gohugo theme for documentation/notekeeping"
-    },
-    "ghazal": {
-      "link": "https://github.com/darshanbaral/ghazal",
-      "description": "hugo theme for personal blogs"
-    },
-    "prastoot": {
-      "link": "https://github.com/darshanbaral/prastoot/",
-      "description": "hugo theme for presentations"
     }
   }
 }
